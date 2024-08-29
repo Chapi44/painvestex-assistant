@@ -29,6 +29,10 @@ app = Flask(__name__)
 # Initialize a dictionary to store previous chats
 previous_chats = {}
 
+@app.route('/')
+def home():
+    return "The server is working!"
+
 @app.route('/chat', methods=['POST'])
 def medical_question():
     try:
@@ -72,4 +76,5 @@ def medical_question():
         return jsonify({"error": str(e)}), 500
 
 if __name__ == '__main__':
-    app.run(debug=True, port=4000)
+    app.run(debug=True, host='0.0.0.0', port=4000)
+
