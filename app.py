@@ -5,6 +5,7 @@ import google.generativeai as palm
 import os
 import warnings
 from dotenv import load_dotenv
+from flask_cors import CORS  # Import CORS from flask_cors
 
 warnings.filterwarnings("ignore")
 
@@ -25,6 +26,7 @@ else:
     model = None
 
 app = Flask(__name__)
+CORS(app)  # Add CORS support to your Flask app
 
 # Initialize a dictionary to store previous chats
 previous_chats = {}
@@ -77,4 +79,3 @@ def medical_question():
 
 if __name__ == '__main__':
     app.run(debug=True, host='0.0.0.0', port=4000)
-
