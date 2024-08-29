@@ -29,7 +29,7 @@ app = Flask(__name__)
 # Initialize a dictionary to store previous chats
 previous_chats = {}
 
-@app.route('/medical', methods=['POST'])
+@app.route('/chat', methods=['POST'])
 def medical_question():
     try:
         input_data = request.get_json()
