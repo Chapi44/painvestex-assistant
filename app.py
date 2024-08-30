@@ -66,7 +66,7 @@ def medical_question():
                 response = palm.generate_text(
                     model=model,
                     prompt=general_prompt,
-                    max_output_tokens=800,
+                    max_output_tokens=375,
                 ).result
 
                 # Store the response in the previous chats dictionary
@@ -94,7 +94,7 @@ def rewrite_message():
         rewritten_response = palm.generate_text(
             model=model,
             prompt=message,
-            max_output_tokens=800,
+            max_output_tokens=375,
         ).result
 
         return jsonify({"rewritten_message": rewritten_response})
