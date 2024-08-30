@@ -77,5 +77,30 @@ def medical_question():
     except Exception as e:
         return jsonify({"error": str(e)}), 500
 
+@app.route('/rewrite', methods=['POST'])
+def rewrite_message():
+    try:
+        input_data = request.get_json()
+
+        if not input_data:
+            return jsonify({"error": "No input data provided"}), 400
+
+        message = input_data.get('message', '')
+
+        if not model:
+            return jsonify({"error": "No suitable AI model found"}), 500
+
+        # Generate a rewritten version of the message
+        rewritten_response = palm.generate_text(
+            model=model,
+            prompt=message,
+            max_output_tokens=800,
+        ).result
+
+        return jsonify({"rewritten_message": rewritten_response})
+
+    except Exception as e:
+        return jsonify({"error": str(e)}), 500
+
 if __name__ == '__main__':
     app.run(debug=True, host='0.0.0.0', port=4000)
